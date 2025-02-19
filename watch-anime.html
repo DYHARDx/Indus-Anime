@@ -9,6 +9,7 @@
             color: white;
             text-align: center;
             padding: 20px;
+            margin: 0;
         }
 
         h2 {
@@ -18,11 +19,18 @@
 
         /* Video Player */
         #animePlayer {
-            width: 90%;
-            max-width: 800px;
-            height: 450px;
             border: none;
             display: none; /* Hide initially */
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #animePlayer {
+                width: 100vw;
+                height: 56.25vw; /* 16:9 aspect ratio */
+            }
         }
 
         /* Loading Screen */
