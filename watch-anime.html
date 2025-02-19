@@ -4,13 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Anime</title>
-</head>
-<body style="text-align: center;">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    <h2>Watch Anime Episode</h2>
+        /* Dark Theme */
+        body {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        /* Video Player */
+        #animePlayer {
+            width: 90%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 10px;
+            border: 2px solid #ff9800;
+            box-shadow: 0px 0px 15px rgba(255, 152, 0, 0.6);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #e68900;
+        }
+
+        /* No Video Found Message */
+        .no-video {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🎥 Watch Anime Episode</h2>
 
     <!-- Video Player -->
-    <iframe id="animePlayer" width="640" height="360" src="" frameborder="0" scrolling="0" allowfullscreen></iframe>
+    <iframe id="animePlayer" src="" frameborder="0" allowfullscreen></iframe>
+
+    <!-- Back Button -->
+    <br>
+    <a href="javascript:history.back()" class="back-btn">⬅ Back</a>
 
     <script>
         function getParameterByName(name) {
@@ -25,7 +85,7 @@
         if (videoUrl) {
             document.getElementById("animePlayer").src = decodeURIComponent(videoUrl);
         } else {
-            document.getElementById("animePlayer").outerHTML = "<h3>No Video Found!</h3>";
+            document.getElementById("animePlayer").outerHTML = "<h3 class='no-video'>❌ No Video Found!</h3>";
         }
     </script>
 
