@@ -8,29 +8,24 @@
             background-color: black;
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 0;
             margin: 0;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        /* Video Player */
-        #animePlayer {
-            border: none;
-            display: none; /* Hide initially */
-            width: 100vw;
+            overflow: hidden;
             height: 100vh;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            #animePlayer {
-                width: 100vw;
-                height: 56.25vw; /* 16:9 aspect ratio */
-            }
+        /* Video Player Fullscreen 16:9 */
+        #animePlayer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 56.25vw; /* 16:9 aspect ratio */
+            max-width: 100vh;
+            max-height: 56.25vh;
+            border: none;
+            display: none; /* Hide initially */
         }
 
         /* Loading Screen */
@@ -41,8 +36,9 @@
 
         /* Back Button */
         .back-btn {
-            display: inline-block;
-            margin-top: 15px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
             padding: 10px 15px;
             background-color: white;
             color: black;
@@ -60,7 +56,6 @@
     <!-- Video Player -->
     <iframe id="animePlayer" src="" allowfullscreen></iframe>
 
-    <br>
     <!-- Back Button -->
     <a href="javascript:history.back()" class="back-btn">⬅ Go Back</a>
 
