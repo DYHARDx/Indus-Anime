@@ -3,26 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Anime</title>
     <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Dark Theme */
         body {
-            background-color: #121212;
+            background-color: black;
             color: white;
             text-align: center;
             padding: 20px;
         }
 
         h2 {
+            font-size: 22px;
             margin-bottom: 15px;
-            font-size: 24px;
         }
 
         /* Video Player */
@@ -30,46 +22,42 @@
             width: 90%;
             max-width: 800px;
             height: 450px;
-            border-radius: 10px;
-            border: 2px solid #ff9800;
-            box-shadow: 0px 0px 15px rgba(255, 152, 0, 0.6);
+            border: none;
+            display: none; /* Hide initially */
+        }
+
+        /* Loading Screen */
+        .loading {
+            font-size: 18px;
+            color: #ffcc00;
         }
 
         /* Back Button */
         .back-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ff9800;
-            color: white;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: white;
+            color: black;
             text-decoration: none;
-            border-radius: 5px;
             font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background-color: #e68900;
-        }
-
-        /* No Video Found Message */
-        .no-video {
-            font-size: 18px;
-            margin-top: 20px;
-            color: #ff4c4c;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <h2>🎥 Watch Anime Episode</h2>
+    <h2>🎥 Watch Anime</h2>
+
+    <!-- Loading Message -->
+    <p id="loadingMessage" class="loading">⏳ Please Wait... Loading Video</p>
 
     <!-- Video Player -->
-    <iframe id="animePlayer" src="" frameborder="0" allowfullscreen></iframe>
+    <iframe id="animePlayer" src="" allowfullscreen></iframe>
 
-    <!-- Back Button -->
     <br>
-    <a href="javascript:history.back()" class="back-btn">⬅ Back</a>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-btn">⬅ Go Back</a>
 
     <script>
         function getParameterByName(name) {
@@ -80,11 +68,21 @@
         // Get episode/video URL from parameter
         let videoUrl = getParameterByName("video");
 
-        // Set video URL in iframe if it exists
+        // If video URL exists, load it
         if (videoUrl) {
-            document.getElementById("animePlayer").src = decodeURIComponent(videoUrl);
+            let player = document.getElementById("animePlayer");
+            let loadingText = document.getElementById("loadingMessage");
+
+            // Set video URL
+            player.src = decodeURIComponent(videoUrl);
+
+            // Show player when it loads
+            player.onload = function() {
+                loadingText.style.display = "none"; // Hide loading text
+                player.style.display = "block"; // Show video
+            };
         } else {
-            document.getElementById("animePlayer").outerHTML = "<h3 class='no-video'>❌ No Video Found!</h3>";
+            document.body.innerHTML += "<h3>No Video Found!</h3>";
         }
     </script>
 
