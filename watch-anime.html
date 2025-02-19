@@ -12,18 +12,16 @@
             margin: 0;
             overflow: hidden;
             height: 100vh;
+            width: 100vw;
         }
 
-        /* Video Player Fullscreen 16:9 */
+        /* Fullscreen Video Player */
         #animePlayer {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
             width: 100vw;
-            height: 56.25vw; /* 16:9 aspect ratio */
-            max-width: 100vh;
-            max-height: 56.25vh;
+            height: 100vh;
             border: none;
             display: none; /* Hide initially */
         }
@@ -32,6 +30,10 @@
         .loading {
             font-size: 18px;
             color: #ffcc00;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
